@@ -1,12 +1,14 @@
 import requests
-API_URL = "http://localhost:8080/predictions/roberta"
-
-def query(payload):
-	response = requests.post(API_URL, json=payload)
+BASE_URL = "http://localhost:8080/"
+PRED_URL = "predictions/roberta"
+def prediction(payload):
+	response = requests.post(BASE_URL+PRED_URL, json=payload)
 	return response.json()
 
-output = query({
+server_status_test_result = requests.get(BASE_URL+"ping").json()
+prediction_test_result = prediction({
     "inputs" : ["so sleepy", "so dad", "beautiful night"]
 })
 
-print(output)
+print(server_status_test_result)
+print(prediction_test_result)
