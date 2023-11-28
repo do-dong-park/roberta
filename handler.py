@@ -20,6 +20,7 @@ logger.info("Transformers version %s", transformers.__version__)
 class ModelHandler(BaseHandler):
     def __init__(self):
         self.input = None
+        self.request_ip = None
         
     def initialize(self, context):
         properties = context.system_properties
@@ -28,8 +29,6 @@ class ModelHandler(BaseHandler):
 
         # use GPU if available
         self. device = "cuda"  if torch. cuda.is_available()  else "cpu"
-        
-        
 
         # load the model
         model_file = self.manifest['model']['modelFile']
@@ -50,7 +49,7 @@ class ModelHandler(BaseHandler):
 
         # load the mapping file
         mapping_file_path = os.path.join(model_dir, 'index_to_name.json')
-        print(mapping_file_path)
+        
         if os. path.isfile(mapping_file_path):
             with open(mapping_file_path) as f:
                 self.mapping = json.load(f)
@@ -61,7 +60,6 @@ class ModelHandler(BaseHandler):
         self.initialized = True
 
     def preprocess(self, requests):
-
         # unpack
         data = requests[0].get('body')
         if data is None:
@@ -95,7 +93,7 @@ class ModelHandler(BaseHandler):
         # 추론 정보 저장
         request_info = {
             "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            # "client_ip":   
+            "client_ip": self.context.get_request_header(0,"Host"),
             "input_data": self.input,
             "output_data": preds
         }
