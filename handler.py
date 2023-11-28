@@ -4,6 +4,9 @@ import transformers
 import os
 import json
 import requests
+import datetime
+# import chat_log_module
+
 
 from ts.torch_handler.base_handler import BaseHandler
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -15,7 +18,9 @@ logger.info("Transformers version %s", transformers.__version__)
 
 # custom  model handler class
 class ModelHandler(BaseHandler):
-
+    def __init__(self):
+        self.input = None
+        
     def initialize(self, context):
         properties = context.system_properties
         self.manifest = context.manifest
@@ -64,7 +69,7 @@ class ModelHandler(BaseHandler):
 
         inp_x = data.get('inputs')
 
-
+        self.input = inp_x
         # tokenize 
         tokenized_inp = self.tokenizer(inp_x,
                                         padding=True,
@@ -87,4 +92,13 @@ class ModelHandler(BaseHandler):
         preds = [self.mapping[str(label)] for label in outputs]
         logger.info(f'Predicted Labels: {preds}')
 
+        # 추론 정보 저장
+        request_info = {
+            "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            # "client_ip":   
+            "input_data": self.input,
+            "output_data": preds
+        }
+        # DB에 요청 정보 기록
+        logger.info(f"save logs : {request_info}")
         return [preds]
