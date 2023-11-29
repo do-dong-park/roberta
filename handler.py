@@ -5,20 +5,22 @@ import os
 import json
 import requests
 import datetime
-# import chat_log_module
+import sys
 
-
+from log_db.chat_log_module import TorchServeDB
 from ts.torch_handler.base_handler import BaseHandler
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 # creating a logger
 logger = logging.getLogger(__name__)
-logger.info("Transformers version %s", transformers.__version__)
+# logger.info("Transformers version %s", transformers.__version__)
 
 
 # custom  model handler class
 class ModelHandler(BaseHandler):
     def __init__(self):
+        # 현재 스크립트 파일의 경로 가져오기
+        
         self.input = None
         self.request_ip = None
         
@@ -91,12 +93,17 @@ class ModelHandler(BaseHandler):
         logger.info(f'Predicted Labels: {preds}')
 
         # 추론 정보 저장
-        request_info = {
+        log_info = {
             "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "client_ip": self.context.get_request_header(0,"Host"),
             "input_data": self.input,
             "output_data": preds
         }
         # DB에 요청 정보 기록
-        logger.info(f"save logs : {request_info}")
+        logger.info(f"save logs : {log_info}")
+        
+        torchserve_db = TorchServeDB()
+        torchserve_db.connect_to_db()
+        torchserve_db.save_log(log_info)
+        
         return [preds]
