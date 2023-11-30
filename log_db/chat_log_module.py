@@ -1,8 +1,6 @@
 import pymysql
 import uuid
 import os
-import cryptography
-
 class TorchServeDB:
     def __init__(self):
         self.connection =  pymysql.connect(
@@ -26,6 +24,7 @@ class TorchServeDB:
                         cursor.execute(query)
 
                 self.connection.commit()
+                print("SQL 파일 실행 완료")
 
         except pymysql.Error as e:
             print(f"Error: {e}")

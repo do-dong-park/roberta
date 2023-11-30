@@ -1,4 +1,0 @@
-{
-    "python.condaPath": "/opt/homebrew/Caskroom/miniforge/base/envs/roberta", // conda 실행 파일 경로
-    "python.terminal.activateEnvironment": true // 터미널 열 때 환경 활성화 여부
-}
