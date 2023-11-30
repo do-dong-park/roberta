@@ -1,5 +1,5 @@
 logs/*
-model-store/twitter-roberta-base-sentiment-latest.mar
+twitter-roberta-base-sentiment-latest.mar
 my_model/pytorch_model.bin
 
 # Byte-compiled / optimized / DLL files
