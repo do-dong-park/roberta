@@ -170,8 +170,6 @@ my_model/
 /my_tokenizer
 !my_tokenizer/*
 
-*.mar
-
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
