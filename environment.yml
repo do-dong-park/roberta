@@ -1,0 +1,54 @@
+name: roberta
+channels:
+  - conda-forge
+dependencies:
+  - bzip2=1.0.8=h93a5062_5
+  - ca-certificates=2023.11.17=hf0a4a13_0
+  - cffi=1.16.0=py38h73f40f7_0
+  - cryptography=41.0.7=py38h4e52f8d_0
+  - libffi=3.4.2=h3422bc3_5
+  - libsqlite=3.44.2=h091b4b1_0
+  - libzlib=1.2.13=h53f4e23_5
+  - ncurses=6.4=h463b476_2
+  - openssl=3.2.0=h0d3ecfb_1
+  - pip=23.3.1=pyhd8ed1ab_0
+  - pycparser=2.21=pyhd8ed1ab_0
+  - python=3.8.18=h2469fbe_0_cpython
+  - python_abi=3.8=4_cp38
+  - readline=8.2=h92ec313_1
+  - setuptools=68.2.2=pyhd8ed1ab_0
+  - tk=8.6.13=h5083fa2_1
+  - wheel=0.42.0=pyhd8ed1ab_0
+  - xz=5.2.6=h57fd34a_0
+  - pip:
+      - certifi==2023.11.17
+      - charset-normalizer==3.3.2
+      - enum-compat==0.0.3
+      - filelock==3.13.1
+      - fsspec==2023.10.0
+      - huggingface-hub==0.19.4
+      - idna==3.6
+      - jinja2==3.1.2
+      - markupsafe==2.1.3
+      - mpmath==1.3.0
+      - networkx==3.1
+      - numpy==1.24.4
+      - packaging==23.2
+      - pillow==10.1.0
+      - psutil==5.9.6
+      - pymysql==1.1.0
+      - pyyaml==6.0.1
+      - regex==2023.10.3
+      - requests==2.31.0
+      - safetensors==0.4.1
+      - sympy==1.12
+      - tokenizers==0.15.0
+      - torch==2.1.1
+      - torch-model-archiver==0.9.0
+      - torch-workflow-archiver==0.2.11
+      - torchserve==0.9.0
+      - tqdm==4.66.1
+      - transformers==4.35.2
+      - typing-extensions==4.8.0
+      - urllib3==2.1.0
+prefix: /opt/homebrew/Caskroom/miniforge/base/envs/roberta
