@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.shellArgs.linux": ["-c", "conda activate <가상환경 이름>"],
+    "terminal.integrated.shellArgs.osx": ["-c", "conda activate roberta"],
+    "python.pythonPath": "/opt/homebrew/Caskroom/miniforge/base/envs/roberta/bin/python"
+}
