@@ -1,6 +1,6 @@
 import pymysql
 import uuid
-import os
+
 class TorchServeDB:
     def __init__(self):
         self.connection =  pymysql.connect(
@@ -14,7 +14,7 @@ class TorchServeDB:
     def connect_to_db(self):
         try:
             with self.connection.cursor() as cursor:
-                with open(f"{os.path.dirname(os.path.abspath(__file__))}/init.sql", "r") as sql_file:
+                with open("/Users/bagdong-gyu/WorkSpace/VSCodeProject/torchserve_example/roberta/log_db/init.sql", "r") as sql_file:
                     sql_queries = sql_file.read()
 
                 queries = sql_queries.split(";")

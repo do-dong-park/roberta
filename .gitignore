@@ -1,4 +1,4 @@
 logs/*
-model-store/*
+# model-store/*
 # my_model/*
 # my_tokenizer/*
