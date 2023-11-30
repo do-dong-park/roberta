@@ -1,6 +1,5 @@
 import requests
 import random
-import os
 
 BASE_URL = "http://localhost:8080/"
 PRED_URL = "predictions/roberta"
