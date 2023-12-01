@@ -2,24 +2,23 @@ name: roberta
 channels:
   - conda-forge
 dependencies:
-  - bzip2=1.0.8=h93a5062_5
-  - ca-certificates=2023.11.17=hf0a4a13_0
-  - cffi=1.16.0=py38h73f40f7_0
-  - cryptography=41.0.7=py38h4e52f8d_0
-  - libffi=3.4.2=h3422bc3_5
-  - libsqlite=3.44.2=h091b4b1_0
-  - libzlib=1.2.13=h53f4e23_5
-  - ncurses=6.4=h463b476_2
-  - openssl=3.2.0=h0d3ecfb_1
+  # - ca-certificates=2023.11.17=hf0a4a13_0
+  # - cffi=1.16.0=py38h73f40f7_0
+  # - cryptography=41.0.7=py38h4e52f8d_0
+  # - libffi=3.4.2=h3422bc3_5
+  # - libsqlite=3.44.2=h091b4b1_0
+  # - libzlib=1.2.13=h53f4e23_5
+  # - ncurses=6.4=h463b476_2
+  # - openssl=3.2.0=h0d3ecfb_1
   - pip=23.3.1=pyhd8ed1ab_0
   - pycparser=2.21=pyhd8ed1ab_0
-  - python=3.8.18=h2469fbe_0_cpython
+  # - python=3.8.18=h2469fbe_0_cpython
   - python_abi=3.8=4_cp38
-  - readline=8.2=h92ec313_1
+  # - readline=8.2=h92ec313_1
   - setuptools=68.2.2=pyhd8ed1ab_0
-  - tk=8.6.13=h5083fa2_1
+  # - tk=8.6.13=h5083fa2_1
   - wheel=0.42.0=pyhd8ed1ab_0
-  - xz=5.2.6=h57fd34a_0
+  # - xz=5.2.6=h57fd34a_0
   - pip:
       - certifi==2023.11.17
       - charset-normalizer==3.3.2

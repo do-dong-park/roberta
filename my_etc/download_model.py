@@ -7,7 +7,7 @@ tokenizer = AutoTokenizer.from_pretrained("cardiffnlp/twitter-roberta-base-senti
 model = AutoModelForSequenceClassification.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment-latest")
 
 # save the tokenizer instance
-tokenizer.save_pretrained('./my_tokenizer')
+tokenizer.save_pretrained('../my_tokenizer')
 
 # save the model instance
-model.save_pretrained('./my_model')
+model.save_pretrained('../my_model')

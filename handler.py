@@ -1,6 +1,5 @@
 import torch
 import logging
-import transformers
 import os
 import json
 import requests
@@ -13,8 +12,6 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 # creating a logger
 logger = logging.getLogger(__name__)
-logger.info("Transformers version %s", transformers.__version__)
-
 
 # custom  model handler class
 class ModelHandler(BaseHandler):
