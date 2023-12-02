@@ -1,15 +1,18 @@
 FROM pytorch/torchserve:latest-cpu
 
 RUN pip install transformers
+RUN pip install cryptography
 RUN pip install pymysql
 
-# ENV MYSQL_ROOT_PASSWORD=root
-# ENV MYSQL_DATABASE=torchserve_db
-# ENV MYSQL_USER=root
-# ENV MYSQL_PASSWORD=root
+WORKDIR /home/model-server
 
-# 초기 SQL 스크립트 복사
-# COPY ./log_db/init.sql /docker-entrypoint-initdb.d/
+EXPOSE 8080
+EXPOSE 8081
+EXPOSE 8082
 
-# 컨테이너가 시작될 때 초기화 스크립트 실행
-# RUN chmod +r /docker-entrypoint-initdb.d/init.sql
+COPY model-store /home/model-server/model-store
+COPY my_etc /home/model-server/my_etc
+COPY config.properties /home/model-server/config.properties
+COPY log_db /home/model-server/log_db
+
+ENV PYTHONPATH="/home/model-server/:$PYTHONPATH"

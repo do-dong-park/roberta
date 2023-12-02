@@ -5,30 +5,12 @@ import os
 class TorchServeDB:
     def __init__(self):
         self.connection =  pymysql.connect(
-        host="localhost",
+        host="docker-mysql",
         user="root",
         password="root",
         database="torchserve_db",
         cursorclass=pymysql.cursors.DictCursor,
     )
-
-    def connect_to_db(self):
-        try:
-            with self.connection.cursor() as cursor:
-                with open(f"{os.path.dirname(os.path.abspath(__file__))}/init.sql", "r") as sql_file:
-                    sql_queries = sql_file.read()
-
-                queries = sql_queries.split(";")
-
-                for query in queries:
-                    if query.strip() != "":
-                        cursor.execute(query)
-
-                self.connection.commit()
-                print("SQL 파일 실행 완료")
-
-        except pymysql.Error as e:
-            print(f"Error: {e}")
 
     def save_log(self, log):
         with self.connection.cursor() as cursor:
@@ -42,11 +24,6 @@ class TorchServeDB:
                 cursor.execute(sql, (uuid.uuid4(), timestamp, client_ip, question, answer))
                 self.connection.commit()
 
-                cursor.execute("SELECT * FROM `torchserve_log`")
-                results = cursor.fetchall()
-                
-                for result in results:
-                    print(result)
             except pymysql.Error as e:
                 print(f"Error: {e}")
 

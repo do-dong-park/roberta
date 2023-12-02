@@ -98,7 +98,6 @@ class ModelHandler(BaseHandler):
         logger.info(f"save logs : {log_info}")
 
         torchserve_db = TorchServeDB()
-        torchserve_db.connect_to_db()
         torchserve_db.save_log(log_info)
 
         return [preds]
