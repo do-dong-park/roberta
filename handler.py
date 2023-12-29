@@ -17,7 +17,6 @@ logger = logging.getLogger(__name__)
 class ModelHandler(BaseHandler):
     def __init__(self):
         # 현재 스크립트 파일의 경로 가져오기
-
         self.input = None
         self.request_ip = None
 

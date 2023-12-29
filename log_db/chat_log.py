@@ -1,6 +1,10 @@
+import logging
 import pymysql
 import uuid
 import os
+import datetime
+
+logger = logging.getLogger(__name__)
 
 class TorchServeDB:
     def __init__(self):
@@ -27,16 +31,24 @@ class TorchServeDB:
             except pymysql.Error as e:
                 print(f"Error: {e}")
 
-if __name__ == "__main__":
 
-    torchserve_db = TorchServeDB()
-    torchserve_db.connect_to_db()
+def log_and_save(func):
+    def wrapper(self, *args, **kwargs):
+        preds = func(self, *args, **kwargs)
+        
+        # 추론 정보 저장
+        log_info = {
+            "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "client_ip": self.context.get_request_header(0, "Host"),
+            "input_data": self.input,
+            "output_data": preds,
+        }
+        
+        # DB에 요청 정보 기록
+        logger.info(f"save logs : {log_info}")
 
-    log_info = {
-        'timestamp': '2023-11-28 23:40:30',
-        'client_ip': 'localhost:8080',
-        'input_data': ['dummy'],
-        'output_data': ['dummy']
-    }
+        torchserve_db = TorchServeDB()
+        torchserve_db.save_log(log_info)
 
-    torchserve_db.save_log(log_info)
+        return preds
+    return wrapper
